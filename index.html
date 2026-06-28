@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>InfoVis Design for Academic Activities</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <main class="page">
+    <h1>Information Visualization Design for Academic Activities</h1>
+    <p class="subtitle">
+      Network-based visualization with embedded normalized mini bar charts.
+    </p>
+
+    <section class="input-panel">
+      <details class="editor-details">
+        <summary class="editor-summary">
+          <span class="summary-title">Dataset editor</span>
+          <span class="summary-help">Click to collapse or expand the input form</span>
+        </summary>
+
+        <div class="editor-content">
+          <div class="panel-header">
+            <div>
+              <h2>Dataset editor</h2>
+              <p>
+                Add researchers, edit activity values, and select collaboration relationships.
+              </p>
+            </div>
+
+            <div class="panel-actions">
+              <button id="add-researcher-button" type="button">Add researcher</button>
+
+              <label class="file-button">
+                Import JSON
+                <input id="json-file-input" type="file" accept=".json,application/json" />
+              </label>
+
+              <button id="export-json-button" type="button">Export JSON</button>
+            </div>
+          </div>
+
+          <div class="attribute-editor">
+            <h3>Attributes</h3>
+            <p>
+              Comma-separated attribute names. The number of values for each researcher follows this list.
+            </p>
+            <input
+              id="attributes-input"
+              type="text"
+              value="ACM,TVCG,IEEE,Reviews,Emails"
+            />
+          </div>
+
+          <div id="researcher-editor"></div>
+
+          <div class="input-actions">
+            <button id="update-button" type="button">Update visualization</button>
+            <span id="error-message"></span>
+          </div>
+        </div>
+      </details>
+    </section>
+
+    <section class="visualization" id="visualization">
+      <svg class="links" id="links" viewBox="0 0 1100 720" aria-label="Collaboration network links"></svg>
+      <div id="nodes"></div>
+    </section>
+
+    <div class="legend" id="legend"></div>
+
+    <p class="note">
+      Each bar is normalized by the maximum value of the corresponding attribute.
+      Since collaboration is usually an undirected relationship, C's collaboration record was modified
+      from "A and B" to "A and D" to make the network symmetric and consistent.
+      The gray links represent the corrected undirected collaboration relationships.
+    </p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
